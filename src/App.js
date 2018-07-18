@@ -7,12 +7,23 @@ class App extends Component {
     cusip: "88160R101"
   };
 
+  componentDidMount() {
+    window.fin &&
+      window.fin.desktop.InterApplicationBus.addSubscribeListener(
+        (uuid, topic) =>
+          alert("The application " + uuid + "just subscribed to " + topic)
+      );
+  }
+
   _publishCusip = () => {
     if (window.fin) {
-      window.fin.desktop.InterApplicationBus.publish(
-        "cusip-pub",
+      console.warn("Attempting to send cusip....");
+      window.fin.desktop.InterApplicationBus.send(
+        "Money.Net-sub",
+        "Money.Net-sub",
+        "cusip-pub-test",
         this.state.cusip,
-        () => alert("CUSIP Published!")
+        () => alert("CUSIP sent!")
       );
     } else {
       alert("You are NOT currently using OpenFin.");
@@ -26,7 +37,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to the CUSIP publishing app</h1>
         </header>
-        <span>Click the button below to publish TSLA's CUSIP</span>
+        <span>Click to publish TSLA's CUSIP</span>
         <br />
         <button onClick={this._publishCusip}>Publish CUSIP</button>
       </div>
