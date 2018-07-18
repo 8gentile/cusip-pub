@@ -1,0 +1,19 @@
+{
+    "devtools_port": 9090,
+    "startup_app": {
+        "name": "cusip-pub",
+        "description": "CUSIP Publisher",
+        "url": "http:localhost:3000",
+        "uuid": "cusip-pub",
+        "autoShow": true
+    },
+    "runtime": {
+        "arguments": "",
+        "version": "0.1"
+    },
+    "shortcut": {
+        "company": "cusip-pub",
+        "description": "Openfin POC",
+        "name": "Openfin POC"
+    }
+}

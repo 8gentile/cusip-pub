@@ -7,9 +7,17 @@ class App extends Component {
     cusip: "88160R101"
   };
 
-  _publishCusip = cusip => {
-    // use openfin api
-  }
+  _publishCusip = () => {
+    if (window.fin) {
+      window.fin.desktop.InterApplicationBus.publish(
+        "cusip-pub",
+        this.state.cusip,
+        () => alert("CUSIP Published!")
+      );
+    } else {
+      alert("You are NOT currently using OpenFin.");
+    }
+  };
 
   render() {
     return (
