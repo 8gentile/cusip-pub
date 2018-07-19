@@ -18,12 +18,9 @@ class App extends Component {
   _publishCusip = () => {
     if (window.fin) {
       console.warn("Attempting to send cusip....");
-      window.fin.desktop.InterApplicationBus.send(
-        "Money.Net-sub",
-        "Money.Net-sub",
-        "cusip-pub-test",
-        this.state.cusip,
-        () => alert("CUSIP sent!")
+      window.fin.desktop.InterApplicationBus.publish(
+        "cusip-pub",
+        this.state.cusip
       );
     } else {
       alert("You are NOT currently using OpenFin.");
